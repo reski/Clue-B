@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1xwyabboxfe"]
+
+[ext_resource type="Script" uid="uid://ch805owshix2v" path="res://scripts/player_controller.gd" id="1_p0vlq"]
+[ext_resource type="Texture2D" uid="uid://fs1qsp0ujho3" path="res://assets/dev/png-transparent-pokemon-red-and-blue-pokemon-firered-and-leafgreen-pokemon-heartgold-and-soulsilver-sprite-sprite-text-rectangle-symmetry-585838136.png" id="2_v6fml"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rwgxs"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_p0vlq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rwgxs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.9999962, 0)
+scale = Vector2(0.021739129, 0.030706517)
+texture = ExtResource("2_v6fml")
