@@ -1,0 +1,9 @@
+~ rojo
+Rojo: Hola! Soy el NPC rojo.
+Rojo: Probá moverte con WASD o flechas.
+Rojo: Y hablame con Enter o E.
+
+~ amarillo
+Amarillo: Ey!
+Amarillo: Yo soy el NPC amarillo.
+Amarillo: Despues le metemos sistema de dialogos con JSON
