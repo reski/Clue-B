@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 var nearby_npcs: Array[Node2D] = []
 var dialogue_active := false
+var active_balloon: Node = null
 
 @onready var interact_detector: Area2D = $InteractDetector
 @onready var dialogue_manager: Node = get_node_or_null("/root/DialogueManager")
@@ -24,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 		return
 
-	var dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = dir * speed
 	move_and_slide()
 
@@ -62,7 +63,9 @@ func _try_interact() -> void:
 
 		if dialogue_resource:
 			dialogue_active = true
-			dialogue_manager.show_dialogue_balloon(dialogue_resource, dialogue_start)
+			active_balloon = dialogue_manager.show_dialogue_balloon(dialogue_resource, dialogue_start)
+			if active_balloon:
+				active_balloon.tree_exited.connect(_on_dialogue_balloon_exited)
 
 func _on_area_entered(area: Area2D) -> void:
 	var npc := area.get_parent() as Node2D
@@ -80,3 +83,8 @@ func _on_dialogue_started(_title := "") -> void:
 
 func _on_dialogue_ended(_title := "") -> void:
 	dialogue_active = false
+	active_balloon = null
+
+func _on_dialogue_balloon_exited() -> void:
+	dialogue_active = false
+	active_balloon = null
